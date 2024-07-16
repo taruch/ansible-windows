@@ -21,6 +21,9 @@
         argv:
           - c:\Program Files\McAfee\Agent\cmdagent.exe
           - /p
-          - /e 
+          - /e
           - /c
           - /f
+
+...
+
