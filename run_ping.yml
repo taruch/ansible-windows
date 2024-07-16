@@ -1,0 +1,8 @@
+---
+- name: run ping
+  hosts: os_windows
+  become: false
+
+  tasks:
+    - name: ping
+      ansible.builtin.win_ping:
