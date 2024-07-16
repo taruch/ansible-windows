@@ -1,0 +1,13 @@
+---
+
+- name: Fix McAfee
+  hosts: all
+  become: true
+  become_method: runas
+  gather_facts: false
+
+  tasks:
+    - name: Run the McAfee cmdagent executable
+      ansible.windows.win_command:
+        cmd: "c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f"
+      register: result
