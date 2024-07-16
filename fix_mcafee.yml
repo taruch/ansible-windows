@@ -8,6 +8,19 @@
 
   tasks:
     - name: Run the McAfee cmdagent executable
+      ignore_errors: true
       ansible.windows.win_command:
-        cmd: "c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f"
-      register: result
+        cmd: '"c:\Program Files\McAfee\Agent\cmdagent.exe" "/p" "/e" "/c" "/f"'
+      register: result_new
+
+    - name: Run the McAfee cmdagent executable
+      ignore_errors: true
+      register: result_argv
+      ansible.windows.win_command:
+        # When using argv, each entry is quoted in the module
+        argv:
+          - c:\Program Files\McAfee\Agent\cmdagent.exe
+          - /p
+          - /e 
+          - /c
+          - /f
