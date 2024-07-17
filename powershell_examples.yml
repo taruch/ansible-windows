@@ -1,7 +1,7 @@
 ---
 
 - name: Fix McAfee
-  hosts: all
+  hosts: os_windows
   gather_facts: false
 
   tasks:
