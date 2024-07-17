@@ -47,7 +47,7 @@
         state: absent
 
     - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
-      ansible.windows.win_shell: C:\Temp\add_user.ps1 /p >> C:\Temp\add_user_log.txt
+      ansible.windows.win_shell: C:\Temp\add_user.ps1 >> C:\Temp\add_user_log.txt
 
     - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
       ansible.windows.win_shell: c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f
