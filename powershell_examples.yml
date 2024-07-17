@@ -2,8 +2,6 @@
 
 - name: Fix McAfee
   hosts: all
-  become: true
-  become_method: runas
   gather_facts: false
 
   tasks:
