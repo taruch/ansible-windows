@@ -5,24 +5,6 @@
   gather_facts: false
 
   tasks:
-    # - name: Run the McAfee cmdagent executable
-    #   ignore_errors: true
-    #   ansible.windows.win_command:
-    #     cmd: '"c:\Program Files\McAfee\Agent\cmdagent.exe" "/p" "/e" "/c" "/f"'
-    #   register: result_new
-
-    # - name: Run the McAfee cmdagent executable
-    #   ignore_errors: true
-    #   register: result_argv
-    #   ansible.windows.win_command:
-    #     # When using argv, each entry is quoted in the module
-    #     argv:
-    #       - c:\Program Files\McAfee\Agent\cmdagent.exe
-    #       - /p
-    #       - /e
-    #       - /c
-    #       - /f
-
     - name: Win ping - determine that we can access and run automation against the Windows host
       ansible.windows.win_ping:
 
@@ -50,7 +32,31 @@
         state: absent
 
     - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
+      ignore_errors: true
       ansible.windows.win_shell: c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f
 
+    - name: show netstat output
+      ansible.builtin.win_command: "netstat -e"
+      register: netstat_output
 
+    - name: Debug netstat output
+      ansible.builtin.debug:
+        var: netstat_output
+
+    - name: Run the McAfee cmdagent executable
+      ignore_errors: true
+      ansible.windows.win_command: '"c:\Program Files\McAfee\Agent\cmdagent.exe" /p /e /c /f"'
+      register: result_new
+
+    # - name: Run the McAfee cmdagent executable
+    #   ignore_errors: true
+    #   register: result_argv
+    #   ansible.windows.win_command:
+    #     # When using argv, each entry is quoted in the module
+    #     argv:
+    #       - c:\Program Files\McAfee\Agent\cmdagent.exe
+    #       - /p
+    #       - /e
+    #       - /c
+    #       - /f
 ...
