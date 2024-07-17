@@ -52,6 +52,4 @@
     - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
       ansible.windows.win_shell: c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f
 
-
-
 ...
