@@ -22,6 +22,10 @@
     #       - /e
     #       - /c
     #       - /f
+
+    - name: Win ping
+      ansible.windows.win_ping:
+        
     - name: Create a file from a Jinja2 template
       ansible.windows.win_template:
         src: ./add_user.j2
