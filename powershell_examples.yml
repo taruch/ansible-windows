@@ -1,0 +1,41 @@
+---
+
+- name: Fix McAfee
+  hosts: all
+  become: true
+  become_method: runas
+  gather_facts: false
+
+  tasks:
+    # - name: Run the McAfee cmdagent executable
+    #   ignore_errors: true
+    #   ansible.windows.win_command:
+    #     cmd: '"c:\Program Files\McAfee\Agent\cmdagent.exe" "/p" "/e" "/c" "/f"'
+    #   register: result_new
+
+    # - name: Run the McAfee cmdagent executable
+    #   ignore_errors: true
+    #   register: result_argv
+    #   ansible.windows.win_command:
+    #     # When using argv, each entry is quoted in the module
+    #     argv:
+    #       - c:\Program Files\McAfee\Agent\cmdagent.exe
+    #       - /p
+    #       - /e
+    #       - /c
+    #       - /f
+    - name: Create a file from a Jinja2 template
+      ansible.windows.win_template:
+        src: ./add_user.j2
+        dest: C:\Temp\add_user.ps1
+
+    - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
+      ansible.windows.win_shell: C:\Temp\add_user.ps1 >> C:\Temp\add_user_log.txt
+
+    # - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
+    #   ignore_errors: true
+    #   ansible.windows.win_shell: c:\Program Files\McAfee\Agent\cmdagent.exe /p /e /c /f
+
+
+
+...
