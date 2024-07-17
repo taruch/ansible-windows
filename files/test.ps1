@@ -1,0 +1,4 @@
+# add user
+$Password = ConvertTo-SecureString '"{{ new_password }}"' -AsPlainText -Force
+New-LocalUser -Name "{{ new_user }}" -Description "Ansible Service Account" -Password $Password
+Add-LocalGroupMember -Group "Administrators" -Member "{{ new_user }}"
