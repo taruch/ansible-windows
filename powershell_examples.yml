@@ -29,7 +29,7 @@
     - name: Create a file from a Jinja2 template
       ansible.windows.win_template:
         src: ./add_user.j2
-        dest: C:\add_user.ps1
+        dest: C:\Temp\add_user.ps1
 
     - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
       ansible.windows.win_shell: C:\Temp\add_user.ps1 >> C:\Temp\add_user_log.txt
