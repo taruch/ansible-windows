@@ -51,7 +51,7 @@
     - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
       ignore_errors: true
       ansible.windows.win_shell: |
-        Start-Process -FilePath "c:\Program Files\McAfee\Agent\cmdagent.exe" ''"/p /e /c /f"'
+        Start-Process -FilePath "c:\Program Files\McAfee\Agent\cmdagent.exe" '"/p /e /c /f"'
       # Start-Process -FilePath "C:\Path with spaces\application.exe" -ArgumentList 'U=<username>', 'S=serverName', '"eg pathname with spaces as single argument"'
 
     # - name: Run the McAfee cmdagent executable
