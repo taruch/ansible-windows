@@ -47,7 +47,7 @@
       ignore_errors: true
       ansible.windows.win_shell: Start-Process -FilePath MpCmdRun.exe '"-Scan -ScanType 2"'
       args:
-        chdir: "c:\Program Files\Windows Defender"
+        chdir: '"c:\Program Files\Windows Defender"'
         # MpCmdRun.exe -Scan -ScanType 2
 
     - name: Execute the McAfee cmdagent executable in the remote shell (powershell)
