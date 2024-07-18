@@ -33,6 +33,8 @@
 
     - name: Print out a list of users removed from the administrators group
       ansible.builtin.debug:
-        msg: 
-          - "Removed Users: {{ admin_pruning_output.removed }}"
-          - "Remaining Administrators: {{ admin_pruning_output.members }}"
+        msg: "Removed Users: {{ admin_pruning_output.removed }}"
+
+    - name: Print out a list of users remaining in the administrators group
+      ansible.builtin.debug:
+        msg: "Remaining Administrators: {{ admin_pruning_output.members }}"
