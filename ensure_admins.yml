@@ -9,6 +9,7 @@
       - ec2-user
       - Administrator
       - admin
+      - nothereguy
   tasks:
     # Creates a local unwanted user for testing purposes - remove from production playbook
     - name: Ensure user "unwanted_user" is created
