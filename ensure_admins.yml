@@ -23,6 +23,5 @@
     - name: Ensure only a domain user exists in a local group
       ansible.windows.win_group_membership:
         name: Administrators
-        members: {{ admin_users }}
-
+        members: "{{ admin_users }}"
         state: pure
