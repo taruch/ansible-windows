@@ -25,3 +25,8 @@
         name: Administrators
         members: "{{ admin_users }}"
         state: pure
+      register: admin_clean
+
+    - name: Print out a list of users removed from the administrators group
+      ansible.builtin.debug:
+        msg: "{{ admin_clear.removed }}"
