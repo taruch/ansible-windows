@@ -3,16 +3,20 @@
   hosts: os_windows
   gather_facts: no
   vars:
+    # This is a list of the admin users who should be on the host.
+    # Change as appropriate to list the users that should be on your local machines
     admin_users:
       - ec2-user
       - Administrator
       - admin
   tasks:
+    # Creates a local unwanted user for testing purposes - remove from production playbook
     - name: Ensure user "unwanted_user" is created
       ansible.windows.win_user:
         name: unwanted_user
         state: Present
 
+    # Adds unwanted user to Administrators group for testing purposes - remove from production playbook
     - name: Ensure only a domain user exists in a local group
       ansible.windows.win_group_membership:
         name: Administrators
@@ -25,8 +29,10 @@
         name: Administrators
         members: "{{ admin_users }}"
         state: pure
-      register: admin_clean
+      register: admin_pruning_output
 
     - name: Print out a list of users removed from the administrators group
       ansible.builtin.debug:
-        msg: "{{ admin_clean.removed }}"
+        msg: 
+          - "Removed Users: {{ admin_pruning_output.removed }}"
+          - "Remaining Administrators: {{ admin_pruning_output.members }}"
