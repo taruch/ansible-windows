@@ -2,6 +2,11 @@
 - name: Ensure Windows user is deleted
   hosts: os_windows
   gather_facts: no
+  vars:
+    admin_users:
+      - ec2-user
+      - Administrator
+      - admin
   tasks:
     - name: Ensure user "unwanted_user" is created
       ansible.windows.win_user:
@@ -15,11 +20,9 @@
           - unwanted_user
         state: present
 
-# - name: Ensure only a domain user exists in a local group
-#   ansible.windows.win_group_membership:
-#     name: Administrators
-#     members:
-#       - ec2-user
-#       - Administrator
-#       - admin
-#     state: pure
+    - name: Ensure only a domain user exists in a local group
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members: {{ admin_users }}
+
+        state: pure
