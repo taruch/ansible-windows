@@ -8,12 +8,12 @@
         name: unwanted_user
         state: Present
 
-- name: Ensure only a domain user exists in a local group
-  ansible.windows.win_group_membership:
-    name: Administrators
-    members:
-      - unwanted_user
-    state: present
+    - name: Ensure only a domain user exists in a local group
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+          - unwanted_user
+        state: present
 
 # - name: Ensure only a domain user exists in a local group
 #   ansible.windows.win_group_membership:
